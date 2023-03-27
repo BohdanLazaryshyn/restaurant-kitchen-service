@@ -1,3 +1,6 @@
 venv
 .idea
 **__pycashe__
+/kitchen/111/
+/db.sqlite3
+*.pyc
