@@ -23,23 +23,14 @@ class Cook(AbstractUser):
 class Dish(models.Model):
     name = models.CharField(max_length=63, unique=True)
     description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     cooks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="dishes")
 
     class Meta:
         ordering = ["name"]
-
-    def __str__(self):
-        return self.name
-
-
-class Ingredient(models.Model):
-    name = models.CharField(max_length=63)
-    dishes = models.ManyToManyField(Dish, related_name="ingredients")
-
-    class Meta:
-        ordering = ["name"]
+        verbose_name = "dish"
+        verbose_name_plural = "dishes"
 
     def __str__(self):
         return self.name
