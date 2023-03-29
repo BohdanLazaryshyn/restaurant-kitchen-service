@@ -9,20 +9,22 @@
 
   </h1>
   <h2>Dishes:</h2>
+  <h4>
     <ul>
-      {% for dish in dishtype.dish.name %}
+      {% for dish in dishtype.dish_set.all %}
         <li>
           <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a>
         </li>
       {% endfor %}
     </ul>
-  <h4>
-    Cooks
+  <hr>
+    Cooks in this sector:
   </h4>
   <hr>
   <ul>
-    {% for cook in dishtype.dishes %}
-      <li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
+    {% for cook in dishtype.dish_set.all %}
+      <li>{{ cook.cooks.username }} ({{ cook.cooks.first_name }} {{ cook.cooks.last_name }})</li>
     {% endfor %}
   </ul>
+  <hr>
 {% endblock %}

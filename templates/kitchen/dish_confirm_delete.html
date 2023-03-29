@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Do you cooked this dish: {{ dish.name }}?</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div>
+      <input type="submit" value="Yes" class="btn btn-danger">
+      Or
+      <a href="{% url 'kitchen:dish-detail' dish.id %}">No</a>
+    </div>
+
+  </form>
+{% endblock %}
