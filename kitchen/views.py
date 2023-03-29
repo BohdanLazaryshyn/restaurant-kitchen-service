@@ -61,18 +61,18 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
     fields = "__all__"
-    success_url = reverse_lazy("kitchen:cok_list")
+    success_url = reverse_lazy("kitchen:cok-list")
 
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
     fields = "__all__"
-    success_url = reverse_lazy("kitchen:cook_list")
+    success_url = reverse_lazy("kitchen:cook-list")
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
-    success_url = reverse_lazy("kitchen:cook_list")
+    success_url = reverse_lazy("kitchen:cook-list")
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):
@@ -107,22 +107,23 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
     fields = "__all__"
-    success_url = reverse_lazy("kitchen:dish_list")
+    success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     fields = "__all__"
-    success_url = reverse_lazy("kitchen:dish_list")
+    success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Dish
-    success_url = reverse_lazy("kitchen:dish_list")
+    success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
+    context_object_name = "dish_type_list"
     paginate_by = 10
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -152,18 +153,18 @@ class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
     fields = "__all__"
-    success_url = reverse_lazy("kitchen:dish_type_list")
+    success_url = reverse_lazy("kitchen:dish-type-list")
 
 
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
     fields = "__all__"
-    success_url = reverse_lazy("kitchen:dish_type_list")
+    success_url = reverse_lazy("kitchen:dish-type-list")
 
 
 class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
-    success_url = reverse_lazy("kitchen:dish_type_list")
+    success_url = reverse_lazy("kitchen:dish-type-list")
 
 
 @login_required
@@ -172,9 +173,9 @@ def toggle_assign_to_dish(request, pk):
     if (
         Dish.objects.get(id=pk) in cook.dishes.all()
     ):
-        cook.cars.remove(pk)
+        cook.dishes.remove(pk)
     else:
-        cook.cars.add(pk)
+        cook.dishes.add(pk)
     return HttpResponseRedirect(reverse_lazy("kitchen:dish-detail", args=[pk]))
 
 

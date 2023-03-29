@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ dishtype.name }}
+    <a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+  </h1>
+  <h2>Dishes:</h2>
+    <ul>
+      {% for dish in dishtype.dish.name %}
+        <li>
+          <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  <h4>
+    Cooks
+  </h4>
+  <hr>
+  <ul>
+    {% for cook in dishtype.dishes %}
+      <li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
