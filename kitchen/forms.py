@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
 from kitchen.models import Cook, Dish
+from storehouse.models import Ingredient
 
 
 class CookRegistrationForm(forms.ModelForm):
@@ -21,9 +22,13 @@ class CookRegistrationForm(forms.ModelForm):
 
 
 class DishForm(forms.ModelForm):
-    drivers = forms.ModelMultipleChoiceField(
+    cooks = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
+    )
+    ingredients = forms.ModelMultipleChoiceField(
+        queryset=Ingredient.objects.all(),
+        widget=forms.CheckboxSelectMultiple(),
     )
 
     class Meta:
@@ -31,13 +36,12 @@ class DishForm(forms.ModelForm):
         fields = "__all__"
 
 
-class DriverCreationForm(UserCreationForm):
-    class Cook(UserCreationForm.Meta):
+class CookForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
         model = Cook
         fields = UserCreationForm.Meta.fields + (
-            "experience",
-            "first_name",
-            "last_name",
+            "years_of_experience", "first_name", "last_name"
         )
 
 

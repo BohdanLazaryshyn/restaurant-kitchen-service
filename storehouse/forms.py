@@ -1,4 +1,5 @@
 from django import forms
+from .models import Ingredient
 
 
 class IngredientSearchForm(forms.Form):
@@ -8,3 +9,10 @@ class IngredientSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by name..."})
     )
+
+
+class IngredientForm(forms.ModelForm):
+
+    class Meta:
+        model = Ingredient
+        fields = ['name']

@@ -4,7 +4,7 @@ from storehouse.views import (
     IngredientListView,
     IngredientCreateView,
     IngredientUpdateView,
-    IngredientDeleteView
+    IngredientDeleteView,
 )
 
 urlpatterns = [path(
@@ -12,7 +12,7 @@ urlpatterns = [path(
         IngredientListView.as_view(),
         name="ingredient-list",
     ), path(
-        "ingredients/<int:pk>/create/",
+        "ingredients/create/",
         IngredientCreateView.as_view(),
         name="ingredient-create"
     ), path(

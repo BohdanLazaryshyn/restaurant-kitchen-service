@@ -2,8 +2,8 @@
 
 {% block content %}
   <h1>
-    {{ dishtype.name }}
-    <a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}" class="btn btn-danger link-to-page">
+    {{ ingredient.name }}
+    <a href="{% url 'storehouse:ingredient-delete' pk=ingredient.id %}" class="btn btn-danger link-to-page">
       Delete
     </a>
 
