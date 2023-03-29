@@ -1,12 +1,21 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 
 from storehouse.models import Ingredient
-from .forms import DishSearchForm, DishTypeSearchForm, CookSearchForm, CookRegistrationForm, CookForm, DishForm
+from .forms import (
+    DishSearchForm,
+    DishTypeSearchForm,
+    CookSearchForm,
+    CookForm,
+    DishForm,
+    RegistrationForm,
+    CookCreationForm)
+
 from .models import Cook, Dish, DishType
 
 
@@ -60,14 +69,27 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
-    form_class = CookForm
-    success_url = reverse_lazy("kitchen:cok-list")
-
-
-class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
-    model = Cook
-    fields = "__all__"
+    form_class = CookCreationForm
     success_url = reverse_lazy("kitchen:cook-list")
+
+
+class CookUpdateView(LoginRequiredMixin, View):
+    template_name = 'kitchen/cook_form.html'
+
+    def get(self, request, pk):
+        user = get_object_or_404(get_user_model(), pk=pk)
+        form = CookForm(instance=user)
+        context = {'form': form}
+        return render(request, self.template_name, context)
+
+    def post(self, request, pk):
+        user = get_object_or_404(get_user_model(), pk=pk)
+        form = CookForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user_detail', pk=user.id)
+        context = {'form': form}
+        return render(request, self.template_name, context)
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -181,15 +203,12 @@ def toggle_assign_to_dish(request, pk):
 
 def register(request):
     if request.method == 'POST':
-        user_form = CookRegistrationForm(request.POST)
+        user_form = RegistrationForm(request.POST)
         if user_form.is_valid():
-            # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
-            # Set the chosen password
             new_user.set_password(user_form.cleaned_data['password'])
-            # Save the User object
             new_user.save()
             return render(request, 'registration/register_done.html', {'new_user': new_user})
     else:
-        user_form = CookRegistrationForm()
+        user_form = RegistrationForm()
     return render(request, 'registration/register.html', {'user_form': user_form})

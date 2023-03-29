@@ -12,12 +12,18 @@ from kitchen.views import (
     DishTypeDeleteView,
     DishTypeUpdateView,
     DishTypeCreateView,
-    toggle_assign_to_dish, CookDeleteView, CookUpdateView, CookCreateView, CookListView, CookDetailView, register
+    toggle_assign_to_dish,
+    CookDeleteView,
+    CookUpdateView,
+    CookCreateView,
+    CookListView,
+    CookDetailView,
+    register,
 )
 
 urlpatterns = [
     path("", index, name="index"),
-    path(r'^register/$', register, name='register'),
+    path("register/", register, name='register'),
     path(
         "dishes/",
         DishListView.as_view(),

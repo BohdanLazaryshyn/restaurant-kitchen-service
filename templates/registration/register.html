@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 
-{% block cont_title %}Create an account{% endblock %}
+{% block cont_title %}
+  <h2>
+    Create an account
+  </h2>
+{% endblock %}
 
 {% block content %}
-    <h1>Create an account</h1>
+    <h4>Create an account</h4>
     <p>Please, sign up using the following form:</p>
     <form action="" method="post">
       {{ user_form.as_p}}

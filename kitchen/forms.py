@@ -1,12 +1,12 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, password_validation
 from django.contrib.auth.forms import UserCreationForm
 
 from kitchen.models import Cook, Dish
 from storehouse.models import Ingredient
 
 
-class CookRegistrationForm(forms.ModelForm):
+class RegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
 
@@ -36,13 +36,19 @@ class DishForm(forms.ModelForm):
         fields = "__all__"
 
 
-class CookForm(UserCreationForm):
+class CookCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = Cook
         fields = UserCreationForm.Meta.fields + (
             "years_of_experience", "first_name", "last_name"
         )
+
+
+class CookForm(forms.ModelForm):
+    class Meta:
+        model = Cook
+        fields = ["first_name", "last_name", "years_of_experience"]
 
 
 class CookSearchForm(forms.Form):
