@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from storehouse.models import Ingredient
-from .forms import DishSearchForm, DishTypeSearchForm, CookSearchForm
+from .forms import DishSearchForm, DishTypeSearchForm, CookSearchForm, CookRegistrationForm
 from .models import Cook, Dish, DishType
 
 
@@ -176,3 +176,19 @@ def toggle_assign_to_dish(request, pk):
     else:
         cook.cars.add(pk)
     return HttpResponseRedirect(reverse_lazy("kitchen:dish-detail", args=[pk]))
+
+
+def register(request):
+    if request.method == 'POST':
+        user_form = CookRegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(user_form.cleaned_data['password'])
+            # Save the User object
+            new_user.save()
+            return render(request, 'registration/register_done.html', {'new_user': new_user})
+    else:
+        user_form = CookRegistrationForm()
+    return render(request, 'registration/register.html', {'user_form': user_form})

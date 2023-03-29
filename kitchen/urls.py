@@ -12,11 +12,12 @@ from kitchen.views import (
     DishTypeDeleteView,
     DishTypeUpdateView,
     DishTypeCreateView,
-    toggle_assign_to_dish
+    toggle_assign_to_dish, CookDeleteView, CookUpdateView, CookCreateView, CookListView, CookDetailView, register
 )
 
 urlpatterns = [
-    path("", index, name="kitchen"),
+    path("", index, name="index"),
+    path(r'^register/$', register, name='register'),
     path(
         "dishes/",
         DishListView.as_view(),
@@ -30,7 +31,7 @@ urlpatterns = [
         toggle_assign_to_dish,
         name="toggle-dish-assign",
     ), path(
-        "dishes/<int:pk>/create/",
+        "dishes/create/",
         DishCreateView.as_view(),
         name="dish-create",
     ), path(
@@ -44,13 +45,13 @@ urlpatterns = [
     ), path(
         "dish-types",
         DishTypeListView.as_view(),
-        name="dish_type-list",
+        name="dish-type-list",
     ), path(
         "dish-types/<int:pk>/",
         DishTypeDetailView.as_view(),
         name="dish-type-detail"
     ), path(
-        "dish-types/<int:pk>/create/",
+        "dish-types/create/",
         DishTypeCreateView.as_view(),
         name="dish-type-create"
     ), path(
@@ -61,7 +62,26 @@ urlpatterns = [
         "dish-types/<int:pk>/delete/",
         DishTypeDeleteView.as_view(),
         name="dish-type-delete"
-    )
+    ), path(
+        "cooks",
+        CookListView.as_view(),
+        name="cook-list",
+    ), path(
+        "cook/<int:pk>/",
+        CookDetailView.as_view(),
+        name="cook-detail"
+    ), path(
+        "cook/create/",
+        CookCreateView.as_view(),
+        name="cook-create"
+    ), path(
+        "cook/<int:pk>/update/",
+        CookUpdateView.as_view(),
+        name="cook-update"
+    ), path(
+        "cook/<int:pk>/delete/",
+        CookDeleteView.as_view(),
+        name="cook-delete")
 ]
 
 app_name = "kitchen"

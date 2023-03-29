@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Taxi Service Home</h1>
+  <h1>
+    Taxi Service Home
+    <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary" style="float: right">Create new dish</a>
+  </h1>
   <p>Welcome to Best Taxi Ever!</p>
   <h2>Dynamic content</h2>
   <p>The Taxi service has the following record counts:</p>
@@ -12,5 +15,4 @@
     <li><strong>Ingredients:</strong> {{ num_ingredients }}</li>
   </ul>
   <hr>
-{#  <p>You visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>#}
 {% endblock %}
