@@ -32,7 +32,7 @@ def index(request):
         "num_cooks": num_cooks,
         "num_dishes": num_dishes,
         "num_type_dishes": num_type_dishes,
-        "num_ingredients": num_ingredients + 1
+        "num_ingredients": num_ingredients,
     }
 
     return render(request, "kitchen/index.html", context=context)

@@ -1,36 +1,109 @@
-{% extends "base.html" %}
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#  <h1>#}
+{#    Username: {{ cook.username }}#}
+{#    <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-danger link-to-page">#}
+{#      Delete#}
+{#    </a>#}
+{##}
+{#    <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-secondary link-to-page">#}
+{#      Update cook`s info#}
+{#    </a>#}
+{#    <a href="{% url 'kitchen:change_password' %}" class="btn btn-primary link-to-page">#}
+{#      Change Password#}
+{#    </a>#}
+{#  </h1>#}
+{##}
+{#  <p><strong>First name:</strong> {{ cook.first_name }}</p>#}
+{#  <p><strong>Last name:</strong> {{ cook.last_name }}</p>#}
+{#  <p><strong>Experience:</strong> {{ cook.years_of_experience }}</p>#}
+{#  <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>#}
+{##}
+{#  <div class="ml-3">#}
+{#    <h4>Dishes prepared by the cook</h4>#}
+{##}
+{#    {% for dish in cook.dishes.all %}#}
+{#        <hr>#}
+{#        <p><strong>Name:</strong> <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a></p>#}
+{#        <p><strong>Type of dish:</strong> {{ dish.dish_type.name }}</p>#}
+{#        <p class="text-muted"><strong>Id:</strong> {{dish.id}}</p>#}
+{##}
+{#    {% empty %}#}
+{#      <p>This cook don`t has work</p>#}
+{#    {% endfor %}#}
+{#  </div>#}
+{#{% endblock %}#}
+
+
+{% extends 'base_sections.html' %}
+{% load static %}
+
+{% block body %} class="blog-author bg-gray-100" {% endblock body %}
+
+{% block header %}
+
+{% include 'includes/navigation.html' %}
+
+{% endblock header %}
 
 {% block content %}
-  <h1>
-    Username: {{ cook.username }}
-    <a href="{% url 'kitchen:cook-delete' pk=cook.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
 
-    <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-secondary link-to-page">
-      Update cook`s info
-    </a>
-    <a href="{% url 'kitchen:change_password' %}" class="btn btn-primary link-to-page">
-      Change Password
-    </a>
-  </h1>
+  <section class="py-sm-7 py-5 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <div class="row py-lg-7 py-5">
+            <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2 class="mb-0">{{ cook.last_name }} {{ cook.first_name }} </h2>
+                <div class="d-block">
+                  <button  type="button" class="btn btn-sm btn-outline-info text-nowrap mb-0" ><a href="{% url 'kitchen:cook-update' pk=cook.id %}">Create</a></button>
+                  <button  type="button" class="btn btn-sm btn-outline-info text-nowrap mb-0" ><a href="{% url 'kitchen:cook-delete' pk=cook.id %}">Delete</a></button>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-auto">
+                  {% if cook.years_of_experience %}
 
-  <p><strong>First name:</strong> {{ cook.first_name }}</p>
-  <p><strong>Last name:</strong> {{ cook.last_name }}</p>
-  <p><strong>Experience:</strong> {{ cook.years_of_experience }}</p>
-  <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
+                    <span class="h6">Experience: </span>
+                    <span>{{ cook.years_of_experience }} years </span>
+                  {% else %}
+                    <span class="h6">Without</span>
+                    <span>experience</span>
+                  {% endif %}
+                </div>
+              </div>
+              <p class="text-lg mb-0">
+                <span class="h6">Attention:</span> In the future, the page will include a photo and a brief description of each employee.
+              </p>
+              <br>
+              <div class="ml-3">
+                <h3>Dishes prepared by the cook</h3>
 
-  <div class="ml-3">
-    <h4>Dishes prepared by the cook</h4>
+                <table class="table">
+                  <tr>
+                    <th><h4 class="mb-0"> Name </h4></th>
+                    <th><h4 class="mb-0"> Type of dish </h4></th>
+                  </tr>
 
-    {% for dish in cook.dishes.all %}
-        <hr>
-        <p><strong>Name:</strong> <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a></p>
-        <p><strong>Type of dish:</strong> {{ dish.dish_type.name }}</p>
-        <p class="text-muted"><strong>Id:</strong> {{dish.id}}</p>
+                  {% for dish in cook.dishes.all %}
+                    <tr>
+                      <td>
+                        <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a>
+                      </td>
+                        <td>
+                          {{ dish.dish_type.name }}
+                        </td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    {% empty %}
-      <p>This cook don`t has work</p>
-    {% endfor %}
-  </div>
-{% endblock %}
+  {% endblock content %}
