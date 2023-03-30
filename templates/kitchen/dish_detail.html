@@ -20,7 +20,7 @@
               <div class="d-flex justify-content-between align-items-center mb-2">
                 <h2 class="mb-0">{{ dish.name }} </h2>
                 <div class="d-block">
-                  <button  type="button" class="btn btn-light link-to-page" ><a href="{% url 'kitchen:dish-update' pk=dish.id %}">Create</a></button>
+                  <button  type="button" class="btn btn-light link-to-page" ><a href="{% url 'kitchen:dish-update' pk=dish.id %}">Update</a></button>
                   <button  type="button" class="btn btn-danger link-to-page" ><a href="{% url 'kitchen:dish-delete' pk=dish.id %}">Delete</a></button>
                 </div>
               </div>
@@ -62,7 +62,7 @@
               </h3>
               <ul>
                 {% for cook in dish.cooks.all %}
-                  <li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
+                  <li><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</a></li>
                 {% endfor %}
               </ul>
               </div>

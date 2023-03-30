@@ -1,17 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Sum
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.models import Dish
 from storehouse.forms import IngredientSearchForm, IngredientForm
 from storehouse.models import Ingredient
 
 
 class IngredientListView(LoginRequiredMixin, generic.ListView):
     model = Ingredient
-    paginate_by = 10
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IngredientListView, self).get_context_data(**kwargs)

@@ -106,52 +106,6 @@
                   <span class="h6">Attention:</span> No dishes in this sector.
                 </p>
               {% endif %}
-
-{#              <div class="ml-3">#}
-{#                <h3>Dishes in this sector</h3>#}
-{#                <br>#}
-{#                {% if dishtype.dish_set.all %}#}
-{#                <table class="table">#}
-{#                  <tr>#}
-{#                    <th><h4 class="mb-0"> Name </h4></th>#}
-{#                    <th><h4 class="mb-0"> Price </h4></th>#}
-{#                  </tr>#}
-{#                  {% for dish in dishtype.dish_set.all %}#}
-{#                    <tr>#}
-{#                      <td>#}
-{#                        <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a>#}
-{#                      </td>#}
-{#                        <td>#}
-{#                          {{ dish.prise }}#}
-{#                        </td>#}
-{#                    </tr>#}
-{#                  {% endfor %}#}
-{#                </table>#}
-{#              {% else %}#}
-{#                <p class="text-lg mb-0">#}
-{#                  <span class="h6">Attention:</span> No dishes in this sector.#}
-{#                </p>#}
-{#              {% endif %}#}
-{#                <br>#}
-{#              <h3>#}
-{#                Cooks in this sector#}
-{#              </h3>#}
-{#                <br>#}
-{#                {% if dishtype.dish_set.all %}#}
-{#                <ul>#}
-{#                    {% for dish in dishtype.dish_set.all %}#}
-{#                      {% for cook in dish.cooks.all %}#}
-{#                        <li>#}
-{#                          <a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username }}</a> ({{ cook.first_name }} {{ cook.last_name }})#}
-{#                        </li>#}
-{#                      {% endfor %}#}
-{#                    {% endfor %}#}
-{#                  </ul>#}
-{#                {% else %}#}
-{#                  <p class="text-lg mb-0">#}
-{#                    <span class="h6">Attention:</span> No cooks in this sector.#}
-{#                  </p>#}
-{#                {% endif %}#}
               </div>
             </div>
           </div>
