@@ -1,12 +1,53 @@
-{% extends "base.html" %}
+{#{% extends "base.html" %}#}
+{#{% load crispy_forms_filters %}#}
+{##}
+{#{% block content %}#}
+{#  <h1>{{ object|yesno:"Update,Create" }} section of kitchen</h1>#}
+{#  <form action="" method="post" novalidate>#}
+{#    {% csrf_token %}#}
+{#    {{ form|crispy }}#}
+{##}
+{#    <input type="submit" value="Submit" class="btn btn-primary">#}
+{#  </form>#}
+{#{% endblock %}#}
+
+
+{% extends 'base_sections.html' %}
 {% load crispy_forms_filters %}
+{% load static %}
+
+{% block body %} class="sign-in-illustration" {% endblock body %}
+
+{% block header %}
+
+{% include 'includes/navigation.html' %}
+
+{% endblock header %}
 
 {% block content %}
-  <h1>{{ object|yesno:"Update,Create" }} section of kitchen</h1>
-  <form action="" method="post" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
 
-    <input type="submit" value="Submit" class="btn btn-primary">
-  </form>
-{% endblock %}
+  <section class="py-sm-7 py-5 position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="row py-lg-7 py-5">
+          <div class="col-lg-7 col-md-7 z-index-2 position-relative mx-auto px-md-2 px-sm-5 mt-sm-0 mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <form method="post" action="" role="form">
+                <h1>{{ object|yesno:"Update this,Create new" }} type of dish</h1>
+                <form action="" method="post" novalidate>
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <div class="text-center">
+                    <input type="submit" value="Done" class="btn btn-light link-to-page btn-lg w-100 mt-4 mb-0">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

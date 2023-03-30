@@ -59,7 +59,8 @@
                 <h2 class="mb-0">{{ cook.last_name }} {{ cook.first_name }} </h2>
                 <div class="d-block">
                   <button  type="button" class="btn btn-light link-to-page" ><a href="{% url 'kitchen:cook-update' pk=cook.id %}">Update</a></button>
-                  <button  type="button" class="btn btn-danger link-to-page" ><a href="{% url 'kitchen:cook-update' pk=cook.id %}">Delete</a></button>
+                  <button  type="button" class="btn btn-danger link-to-page" ><a href="{% url 'kitchen:cook-delete' pk=cook.id %}">Delete</a></button>
+                  <button  type="button" class="btn btn-primary link-to-page" ><a href="{% url 'kitchen:change_password' %}">Change password</a></button>
                 </div>
               </div>
               <div class="row mb-4">
@@ -80,7 +81,7 @@
               <br>
               <div class="ml-3">
                 <h3>Dishes prepared by the cook</h3>
-
+                {% if cook.dishes.all %}
                 <table class="table">
                   <tr>
                     <th><h4 class="mb-0"> Name </h4></th>
@@ -98,6 +99,11 @@
                     </tr>
                   {% endfor %}
                 </table>
+              {% else %}
+              <p class="text-lg mb-0">
+                This cook does not have a job yet
+              </p>
+              {% endif %}
               </div>
             </div>
           </div>
