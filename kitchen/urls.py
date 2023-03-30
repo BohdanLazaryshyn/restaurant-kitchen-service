@@ -18,7 +18,7 @@ from kitchen.views import (
     CookCreateView,
     CookListView,
     CookDetailView,
-    register, ChangePasswordView,
+    register, ChangePasswordView, ChangePasswordDoneView,
 )
 
 urlpatterns = [
@@ -89,6 +89,10 @@ urlpatterns = [
         ChangePasswordView.as_view(),
         name='change_password'
     ), path(
+        'change-password-done/',
+        ChangePasswordDoneView.as_view(),
+        name='change-password-done'
+    ),path(
         "cook/<int:pk>/delete/",
         CookDeleteView.as_view(),
         name="cook-delete")
