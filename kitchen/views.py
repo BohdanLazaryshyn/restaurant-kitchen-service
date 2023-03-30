@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -14,7 +15,7 @@ from .forms import (
     CookForm,
     DishForm,
     RegistrationForm,
-    CookCreationForm)
+    CookCreationForm, CookChangePasswordForm)
 
 from .models import Cook, Dish, DishType
 
@@ -87,9 +88,17 @@ class CookUpdateView(LoginRequiredMixin, View):
         form = CookForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('user_detail', pk=user.id)
-        context = {'form': form}
+            return redirect("user_detail", pk=user.id)
+        context = {"form": form}
         return render(request, self.template_name, context)
+
+
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
+    form_class = CookChangePasswordForm
+    template_name = 'registration/change_password.html'
+
+    def get_success_url(self):
+        return reverse_lazy("kitchen:cook-detail", args=[self.request.user.pk])
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model, password_validation
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 
 from kitchen.models import Cook, Dish
 from storehouse.models import Ingredient
@@ -19,6 +19,22 @@ class RegistrationForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords don\'t match.')
         return cd['password2']
+
+
+class CookChangePasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="Old password", widget=forms.PasswordInput(attrs={"class": "form-control"})
+    )
+    new_password1 = forms.CharField(
+        label="New password", widget=forms.PasswordInput(attrs={"class": "form-control"})
+    )
+    new_password2 = forms.CharField(
+        label="New password", widget=forms.PasswordInput(attrs={"class": "form-control"})
+    )
+
+    class Meta:
+        model = Cook
+        fields = ["old_password", "new_password1", "new_password2"]
 
 
 class DishForm(forms.ModelForm):
@@ -48,7 +64,7 @@ class CookCreationForm(UserCreationForm):
 class CookForm(forms.ModelForm):
     class Meta:
         model = Cook
-        fields = ["first_name", "last_name", "years_of_experience"]
+        fields = ["first_name", "last_name", "years_of_experience", "password"]
 
 
 class CookSearchForm(forms.Form):

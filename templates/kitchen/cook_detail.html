@@ -10,6 +10,9 @@
     <a href="{% url 'kitchen:cook-update' pk=cook.id %}" class="btn btn-secondary link-to-page">
       Update cook`s info
     </a>
+    <a href="{% url 'kitchen:change_password' %}" class="btn btn-primary link-to-page">
+      Change Password
+    </a>
   </h1>
 
   <p><strong>First name:</strong> {{ cook.first_name }}</p>
