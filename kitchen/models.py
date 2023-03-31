@@ -26,9 +26,12 @@ class Dish(models.Model):
     name = models.CharField(max_length=63, unique=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-    dish_type = models.ForeignKey(DishType, on_delete=models.SET_NULL, null=True,)
-    cooks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="dishes")
-    ingredients = models.ManyToManyField(Ingredient, related_name="dishes", default=None)
+    dish_type = models.ForeignKey(DishType,
+                                  on_delete=models.SET_NULL, null=True,)
+    cooks = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                   related_name="dishes")
+    ingredients = models.ManyToManyField(Ingredient,
+                                         related_name="dishes", default=None)
 
     class Meta:
         ordering = ["name"]

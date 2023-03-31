@@ -7,7 +7,9 @@ class IngredientSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by name of dish..."})
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by name of dish..."}
+        )
     )
 
 

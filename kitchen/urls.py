@@ -92,7 +92,7 @@ urlpatterns = [
         'change-password-done/',
         ChangePasswordDoneView.as_view(),
         name='change-password-done'
-    ),path(
+    ), path(
         "cook/<int:pk>/delete/",
         CookDeleteView.as_view(),
         name="cook-delete")

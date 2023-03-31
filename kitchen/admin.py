@@ -12,7 +12,8 @@ class CookAdmin(UserAdmin):
         ("Additional info", {"fields": ("years_of_experience",)}),
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
-        ("Additional info", {"fields": ("years_of_experience", "first_name", "last_name")}),
+        ("Additional info", {"fields": ("years_of_experience",
+                                        "first_name", "last_name")}),
     )
 
 

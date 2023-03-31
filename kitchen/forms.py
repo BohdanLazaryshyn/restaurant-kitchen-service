@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model, password_validation
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 
 from kitchen.models import Cook, Dish
@@ -7,8 +7,10 @@ from storehouse.models import Ingredient
 
 
 class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
+    password = forms.CharField(label='Password',
+                               widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repeat password',
+                                widget=forms.PasswordInput)
 
     class Meta:
         model = Cook
@@ -23,13 +25,16 @@ class RegistrationForm(forms.ModelForm):
 
 class CookChangePasswordForm(PasswordChangeForm):
     old_password = forms.CharField(
-        label="Old password", widget=forms.PasswordInput(attrs={"class": "form-control"})
+        label="Old password",
+        widget=forms.PasswordInput(attrs={"class": "form-control"})
     )
     new_password1 = forms.CharField(
-        label="New password", widget=forms.PasswordInput(attrs={"class": "form-control"})
+        label="New password",
+        widget=forms.PasswordInput(attrs={"class": "form-control"})
     )
     new_password2 = forms.CharField(
-        label="New password", widget=forms.PasswordInput(attrs={"class": "form-control"})
+        label="New password",
+        widget=forms.PasswordInput(attrs={"class": "form-control"})
     )
 
     class Meta:
@@ -92,4 +97,3 @@ class DishTypeSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by name..."})
     )
-

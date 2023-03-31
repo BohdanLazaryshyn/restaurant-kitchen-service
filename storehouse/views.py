@@ -23,7 +23,9 @@ class IngredientListView(LoginRequiredMixin, generic.ListView):
         form = IngredientSearchForm(self.request.GET)
 
         if form.is_valid():
-            return queryset.filter(dishes__name__icontains=form.cleaned_data["name"]).distinct()
+            return queryset.filter(
+                dishes__name__icontains=form.cleaned_data["name"]
+            ).distinct()
 
         return queryset
 
