@@ -39,27 +39,27 @@
         <div class="row">
           <div class="col-md-3 position-relative">
             <div class="p-3 text-center">
-              <h1 class="text-gradient text-primary"><span id="state1" countTo={{ num_cooks }}>0</span>+</h1>
+              <h1 class="text-gradient text-primary">{{ num_cooks }}+</h1>
               <h5 class="mt-3">Employees in the team</h5>
             </div>
             <hr class="vertical dark">
           </div>
           <div class="col-md-3 position-relative">
             <div class="p-3 text-center">
-              <h1 class="text-gradient text-primary"> <span id="state2" countTo={{ num_type_dishes }}>0</span>+</h1>
+              <h1 class="text-gradient text-primary">{{ num_type_dishes}}+</h1>
               <h5 class="mt-3">Types of dishes</h5>
             </div>
             <hr class="vertical dark">
           </div>
           <div class="col-md-3">
             <div class="p-3 text-center">
-              <h1 class="text-gradient text-primary" id="state3" countTo={{ num_dishes }}>0</h1>
+              <h1 class="text-gradient text-primary">{{ num_dishes }}</h1>
               <h5 class="mt-3">Dishes in menu</h5>
             </div>
           </div>
           <div class="col-md-3">
             <div class="p-3 text-center">
-              <h1 class="text-gradient text-primary" id="state4" countTo={{ num_ingredients }}>0</h1>
+              <h1 class="text-gradient text-primary">{{ num_ingredients }}</h1>
               <h5 class="mt-3">Ingredients on kitchen</h5>
             </div>
           </div>
@@ -69,43 +69,3 @@
   </div>
 </section>
 {% endblock %}
-
-{% block javascripts %}
-
-<script type="text/javascript">
-
-  if (document.getElementById('state1')) {
-    const countUp = new CountUp('state1', document.getElementById("state1").getAttribute("countTo"));
-    if (!countUp.error) {
-      countUp.start();
-    } else {
-      console.error(countUp.error);
-    }
-  }
-  if (document.getElementById('state2')) {
-    const countUp1 = new CountUp('state2', document.getElementById("state2").getAttribute("countTo"));
-    if (!countUp1.error) {
-      countUp1.start();
-    } else {
-      console.error(countUp1.error);
-    }
-  }
-  if (document.getElementById('state3')) {
-    const countUp2 = new CountUp('state3', document.getElementById("state3").getAttribute("countTo"));
-    if (!countUp2.error) {
-      countUp2.start();
-    } else {
-      console.error(countUp2.error);
-    }
-  }
-  if (document.getElementById('state4')) {
-    const countUp3 = new CountUp('state4', document.getElementById("state4").getAttribute("countTo"));
-    if (!countUp3.error) {
-      countUp3.start();
-    } else {
-      console.error(countUp3.error);
-    }
-  }
-</script>
-
-{% endblock javascripts %}

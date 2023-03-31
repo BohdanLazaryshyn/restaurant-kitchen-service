@@ -23,22 +23,37 @@
           <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0"
                id="navigation">
             <ul class="navbar-nav navbar-nav-hover ms-lg-2 ps-lg-5 w-100">
-              <li class="nav-item dropdown dropdown-hover mx-2">
-                <a class="nav-link" href="{% url 'kitchen:dish-list' %}"
-                title="Our menu">Our menu</a>
+              <li class="nav-item">
+                  <a class="nav-link nav-link-icon me-2"
+                     href="{% url 'kitchen:dish-list' %}">
+                    <p class="d-inline text-sm z-index-1 font-weight-bold"
+                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                       title="Our menu">Our menu</p>
+                  </a>
               </li>
-              <li class="nav-item dropdown dropdown-hover mx-2">
-                <a class="nav-link"
-                   href="{% url 'kitchen:dish-type-list' %}?my_tasks=True"
-                title="Types of dishes">Types of dishes</a>
+              <li class="nav-item">
+                  <a class="nav-link nav-link-icon me-2"
+                     href="{% url 'kitchen:dish-type-list' %}">
+                    <p class="d-inline text-sm z-index-1 font-weight-bold"
+                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                       title="Types of dishes">Types of dishes</p>
+                  </a>
               </li>
-              <li class="nav-item dropdown dropdown-hover mx-2">
-                <a class="nav-link" href="{% url 'kitchen:cook-list' %}"
-                title="Our workers">Our workers</a>
+              <li class="nav-item">
+                  <a class="nav-link nav-link-icon me-2"
+                     href="{% url 'kitchen:cook-list' %}">
+                    <p class="d-inline text-sm z-index-1 font-weight-bold"
+                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                       title="Our employees">Our employees</p>
+                  </a>
               </li>
-              <li class="nav-item dropdown dropdown-hover mx-2">
-                <a class="nav-link" href="{% url 'storehouse:ingredient-list' %}"
-                title="Product">Product</a>
+              <li class="nav-item">
+                  <a class="nav-link nav-link-icon me-2"
+                     href="{% url 'storehouse:ingredient-list' %}">
+                    <p class="d-inline text-sm z-index-1 font-weight-bold"
+                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                       title="Ingredients">Ingredients</p>
+                  </a>
               </li>
               {% if user.is_authenticated %}
                 <li class="nav-item ms-lg-auto">
