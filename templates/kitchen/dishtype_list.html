@@ -1,60 +1,6 @@
-{#{% extends "base.html" %}#}
-{#{% load crispy_forms_filters %}#}
-{##}
-{#{% block content %}#}
-{#  <h1>#}
-{#    Type of dishes#}
-{#    <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary link-to-page">#}
-{#      Create#}
-{#    </a>#}
-{#  </h1>#}
-{##}
-{#  <form action="" method="get" class="form-inline">#}
-{#    {{ search_form|crispy }}#}
-{#    <input class="btn btn-secondary" type="Submit" value="Search">#}
-{#  </form>#}
-{##}
-{#  {% if dish_type_list %}#}
-{#    <table class="table">#}
-{#      <tr>#}
-{#        <th>ID</th>#}
-{#        <th>Name</th>#}
-{#        <th>Update</th>#}
-{#        <th>Delete</th>#}
-{#      </tr>#}
-{##}
-{#      {% for type in dish_type_list %}#}
-{#        <tr>#}
-{#          <td>#}
-{#            {{ type.id}}#}
-{#          </td>#}
-{#          <td>#}
-{#              <a href="{% url 'kitchen:dish-type-detail' pk=type.id%}">{{ type.name }}</a>#}
-{#          </td>#}
-{#          <td>#}
-{#              <a href="{% url 'kitchen:dish-type-update' pk=type.id %}">#}
-{#                Update#}
-{#              </a>#}
-{#            </td>#}
-{#            <td>#}
-{#              <a style="color: red"#}
-{#                href="{% url 'kitchen:dish-type-delete' pk=type.id %}">#}
-{#                Delete#}
-{#              </a>#}
-{#            </td>#}
-{#        </tr>#}
-{#      {% endfor %}#}
-{#    </table>#}
-{##}
-{#  {% else %}#}
-{#      <p>There are no dishes in the our service.</p>#}
-{#  {% endif %}#}
-{#{% endblock %}#}
-
 {% extends 'base_sections.html' %}
 {% load crispy_forms_filters %}
 {% load static %}
-
 {% block body %} class="blog-author bg-gray-100" {% endblock body %}
 
 {% block header %}
@@ -65,14 +11,14 @@
 
 {% block content %}
 
-  <section class="py-sm-7 py-5 position-relative">
+<section class="py-sm-7 py-5 position-relative" >
   <div class="container">
     <div class="row">
       <div class="col-12 mx-auto">
         <div class="row py-lg-7 py-5">
           <div class="col-lg-7 col-md-7 z-index-2 position-relative mx-auto px-md-2 px-sm-5 mt-sm-0 mt-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h2 class="mb-0"> Type of dishes </h2>
+              <h2 class="mb-0"> Type of dishes </h2>
                 <div class="d-block">
                   <button  type="button" class="btn btn-light link-to-page" ><a href="{% url 'kitchen:dish-type-create' %}">Create</a></button>
                 </div>
@@ -106,12 +52,13 @@
                   <span class="h6">Attention:</span> No dishes in this sector.
                 </p>
               {% endif %}
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+{% endblock content %}
 
-  {% endblock content %}
+

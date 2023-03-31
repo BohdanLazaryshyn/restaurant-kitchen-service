@@ -6,7 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
+<link rel="apple-touch-icon" sizes="76x76" href="{% static '111/img/apple-icon.png' %}">
 <link rel="icon" type="image/png" href="{% static '/css/—Pngtree—restaurant template logo design icon_4840678.png' %}">
 
 <title>
@@ -23,7 +23,10 @@
 <link id="pagestyle" href="{% static 'css/soft-design-system.css' %}" rel="stylesheet" />
 </head>
 
-<body {% block body %}{% endblock body %} >
+<body
+  {% block body %}
+
+  {% endblock body %} >
 
   {% block header %}
 
@@ -31,7 +34,9 @@
 
   {% endblock header %}
 
-  {% block content %}{% endblock content %}
+  {% block content %}
+
+  {% endblock content %}
 
   {% block footer %}
 

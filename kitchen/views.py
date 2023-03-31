@@ -88,7 +88,7 @@ class CookUpdateView(LoginRequiredMixin, View):
         form = CookForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect("user_detail", pk=user.id)
+            return redirect("kitchen:cook-detail", pk=user.id)
         context = {"form": form}
         return render(request, self.template_name, context)
 
@@ -113,7 +113,6 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
-    paginate_by = 10
     queryset = Dish.objects.select_related("dish_type")
 
     def get_context_data(self, *, object_list=None, **kwargs):

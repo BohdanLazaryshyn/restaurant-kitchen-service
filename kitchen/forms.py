@@ -64,7 +64,7 @@ class CookCreationForm(UserCreationForm):
 class CookForm(forms.ModelForm):
     class Meta:
         model = Cook
-        fields = ["first_name", "last_name", "years_of_experience", "password"]
+        fields = ["first_name", "last_name", "years_of_experience"]
 
 
 class CookSearchForm(forms.Form):
