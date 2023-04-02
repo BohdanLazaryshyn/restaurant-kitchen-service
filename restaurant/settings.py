@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
-# SECRET_KEY = "django-insecure-okvvlo%d)6o*4@kgj(ched$-!6i24ss=7a!qstlu5p!l^as5wg"
+# SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+SECRET_KEY = "django-insecure-okvvlo%d)6o*4@kgj(ched$-!6i24ss=7a!qstlu5p!l^as5wg"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
@@ -121,6 +121,8 @@ AUTH_USER_MODEL = "kitchen.Cook"
 
 LOGIN_REDIRECT_URL = "/"
 
+LOGOUT_REDIRECT_URL = "/"
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -143,9 +145,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_DIRS = (BASE_DIR / "static",)
 
 STATIC_ROOT = "staticfiles/"
 
@@ -153,3 +153,5 @@ STATIC_ROOT = "staticfiles/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+ASSETS_ROOT = " /static/assets"
