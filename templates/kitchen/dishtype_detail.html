@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %} class="blog-author bg-gray-100" {% endblock body %}
+
+{% block header %}
+
+{% include 'includes/navigation.html' %}
+
+{% endblock header %}
+
+{% block content %}
+
+  <section class="py-sm-7 py-5 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <div class="row py-lg-7 py-5">
+            <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h1 class="mb-0">{{ dishtype.name }} </h1>
+                <div class="d-block">
+                  <button  type="button" class="btn btn-light link-to-page" ><a href="{% url 'kitchen:dish-type-update' pk=dishtype.id %}">Update</a></button>
+                  <button  type="button" class="btn btn-danger link-to-page" ><a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}">Delete</a></button>
+                </div>
+              </div>
+              <div class="row mb-4">
+              </div>
+              <h3>Description</h3>
+              <p class="text-lg mb-0">
+                Then I will add a short description of the place under the description.
+              </p>
+              <br>
+              <div class="ml-3">
+                <h3>Dishes in this sector</h3>
+                {% if dishtype.dish_set.all %}
+                <table class="table">
+                  <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                  {% for dish in dishtype.dish_set.all %}
+                    <tr>
+                      <td>
+                        <a href="{% url 'kitchen:dish-detail' pk=dish.id %}">{{ dish.name }}</a>
+                      </td>
+                      <td>
+                        {{ dish.price }}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              {% else %}
+              <p class="text-lg mb-0">
+                There are no dishes in this section yet
+              </p>
+              {% endif %}
+                <br>
+              <hr class="horizontal dark">
+              {% if dishtype.dish_set.all %}
+              <ul>
+                {% for dish in dishtype.dish_set.all %}
+                  <h3>{{ dish.name }}</h3>
+                  <br>
+                  <h4 class="text-lg mb-0">
+                      Short description:
+                  </h4>
+                  <p class="text-lg mb-0">
+                {{ dish.description }}.
+                  </p>
+                  <br>
+                  <h4 class="text-lg mb-0">
+                      The cooks who prepare this dish:
+                  </h4>
+                  {% for cook in dish.cooks.all %}
+                    <ol>
+                      <a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username }}</a> ({{ cook.first_name }} {{ cook.last_name }})
+                    </ol>
+                  {% endfor %}
+                  <hr class="horizontal dark">
+                {% endfor %}
+              </ul>
+              {% else %}
+              <p class="text-lg mb-0">
+                There are no cooks in this section yet
+              </p>
+              {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock content %}
